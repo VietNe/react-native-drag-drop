@@ -14,6 +14,7 @@ interface DragZOneProps extends ContainerProps {
   draggedElementStyle?: ViewStyle;
   itemKeyExtractor: (item: any) => number | string;
   itemsInZoneStyle?: ViewStyle;
+  dragStyle?: ViewStyle;
   zoneId: any;
   zone: any;
   onZoneLayoutChange: (zoneId: any, layout: LayoutProps) => any;
@@ -32,7 +33,7 @@ class DragZOne extends Container<DragZOneProps, DragZOneState> {
     this.props.onZoneLayoutChange(this.props.zoneId, this.state.layout);
   };
   renderItems = (items: any): any => {
-    const { renderItem, itemKeyExtractor, addedHeight, onDrag, itemsInZoneStyle, draggedElementStyle, onGrant, onDragEnd, changed, zoneId, itemsDisplay, numCollumns, listZonesIdApplyMulti, renderDragItem } = this.props;
+    const { renderItem, itemKeyExtractor, addedHeight, onDrag, itemsInZoneStyle, draggedElementStyle, onGrant, onDragEnd, changed, zoneId, itemsDisplay, numCollumns, listZonesIdApplyMulti, renderDragItem, dragStyle } = this.props;
     let _itemsDisplay = itemsDisplay;
     if (listZonesIdApplyMulti && listZonesIdApplyMulti.length > 0 && !listZonesIdApplyMulti.includes(zoneId)) {
       _itemsDisplay = "collumn";
@@ -52,6 +53,7 @@ class DragZOne extends Container<DragZOneProps, DragZOneState> {
         itemKeyExtractor={itemKeyExtractor}
         renderItem={renderItem}
         renderDragItem={renderDragItem}
+        dragStyle={dragStyle}
         onDragEnd={onDragEnd}
         onDrag={(e, l, cb) => onDrag(e, l, cb, zoneId)}
         items={items}

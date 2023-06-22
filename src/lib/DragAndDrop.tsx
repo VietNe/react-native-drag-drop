@@ -36,6 +36,7 @@ interface DragAndDropProps extends ContainerProps {
   itemsContainerHeightFixed?: boolean;
   renderItem: (item: any, index: number) => ReactElement;
   renderDragItem?: () => ReactElement;
+  dragStyle?: ViewStyle;
   itemsContainerStyle?: ViewStyle;
   zonesContainerStyle?: ViewStyle;
   renderZone: (zone: any, children?: ReactElement, hover?: boolean) => ReactElement;
@@ -277,6 +278,7 @@ class DragAndDrop extends Container<DragAndDropProps, DragAndDropState> {
       enableZoneItems = true,
       propsInItems = {},
       renderDragItem,
+      dragStyle,
     } = this.props;
     const { items, zones, dragging, itemsContainerLayout } = this.state;
     // if (this.state.changed) return <View style={style} />;
@@ -313,6 +315,7 @@ class DragAndDrop extends Container<DragAndDropProps, DragAndDropState> {
             onGrant={(grant) => this.setState({ dragging: grant })}
             renderItem={renderItem}
             renderDragItem={renderDragItem}
+            dragStyle={dragStyle}
             numCollumns={itemsNumCollumns}
             itemsDisplay={itemsDisplay}
             draggedElementStyle={draggedElementStyle}
@@ -348,6 +351,7 @@ class DragAndDrop extends Container<DragAndDropProps, DragAndDropState> {
           itemKeyExtractor={itemKeyExtractor}
           renderItem={renderItem}
           renderDragItem={renderDragItem}
+          dragStyle={dragStyle}
           onDragEnd={this.onDragEnd}
           onDrag={this.onDrag}
           listZonesIdApplyMulti={listZonesIdApplyMulti}

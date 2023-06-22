@@ -20,6 +20,7 @@ interface ItemsContainerProps extends ContainerProps {
   itemKeyExtractor: (item: any) => number | string;
   itemsInZoneStyle?: ViewStyle;
   itemsContainerStyle?: ViewStyle;
+  dragStyle?: ViewStyle;
   onLayout?: (layout: LayoutProps | null) => any;
   items: any[];
   renderItem: (item: any, index: number) => ReactElement;
@@ -58,6 +59,7 @@ class ItemsContainer extends Container<ItemsContainerProps, ItemsContainerState>
       zoneId,
       propsInItems,
       renderDragItem,
+      dragStyle,
     } = this.props;
     const newItemsInZoneStyle: ViewStyle = {};
     const newItemsInZoneStyle2: ViewStyle = {};
@@ -106,6 +108,7 @@ class ItemsContainer extends Container<ItemsContainerProps, ItemsContainerState>
                 item={item}
                 renderItem={renderItem}
                 renderDragItem={renderDragItem}
+                dragStyle={dragStyle}
                 tabIndex={index}
                 propsInItems={propsInItems}
                 func={this.props.func}
@@ -135,6 +138,8 @@ class ItemsContainer extends Container<ItemsContainerProps, ItemsContainerState>
                 onDragEnd={onDragEnd}
                 item={item}
                 renderItem={renderItem}
+                renderDragItem={renderDragItem}
+                dragStyle={dragStyle}
                 tabIndex={index}
                 propsInItems={propsInItems}
                 func={this.props.func}

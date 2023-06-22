@@ -17,6 +17,7 @@ interface ZonesContainerProps extends ContainerProps {
   itemsDisplay?: Display;
   numCollumns?: number;
   itemsInZoneStyle?: ViewStyle;
+  dragStyle?: ViewStyle;
   zonesContainerStyle?: ViewStyle;
   onZoneLayoutChange: (zoneId: any, layout: LayoutProps) => any;
   zones: any[];
@@ -50,6 +51,7 @@ class ZonesContainer extends Container<ZonesContainerProps, ZonesContainerState>
       listZonesIdApplyMulti,
       propsInItems,
       renderDragItem,
+      dragStyle,
     } = this.props;
     return (
       <View style={zonesContainerStyle}>
@@ -62,6 +64,7 @@ class ZonesContainer extends Container<ZonesContainerProps, ZonesContainerState>
               key={key}
               renderItem={renderItem}
               renderDragItem={renderDragItem}
+              dragStyle={dragStyle}
               addedHeight={addedHeight}
               itemsDisplay={itemsDisplay}
               numCollumns={numCollumns}

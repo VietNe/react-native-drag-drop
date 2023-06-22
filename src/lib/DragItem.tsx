@@ -14,6 +14,7 @@ interface DragItemProps extends ContainerProps {
   onDragEnd: (gesture: PanResponderGestureState) => boolean;
   draggedElementStyle?: ViewStyle;
   style?: ViewStyle;
+  dragStyle?: ViewStyle;
   itemsInZoneStyle?: ViewStyle;
   item: any;
   renderItem: (item: any, index: number) => ReactElement;
@@ -29,7 +30,7 @@ class DragItem extends Container<DragItemProps, DragItemState> {
   };
   ref = React.createRef<View>();
   render() {
-    const { onDrag, onDragEnd, item, renderItem, renderDragItem, onGrant, tabIndex, addedHeight, itemsInZoneStyle, draggedElementStyle, propsInItems } = this.props;
+    const { onDrag, onDragEnd, item, renderItem, dragStyle, renderDragItem, onGrant, tabIndex, addedHeight, itemsInZoneStyle, draggedElementStyle, propsInItems } = this.props;
     let _child = null;
     let _dragAreaChild = null;
     if (renderDragItem) {
@@ -69,6 +70,7 @@ class DragItem extends Container<DragItemProps, DragItemState> {
         dragAreaChild={dragAreaChild}
         dragArea={dragAreaChild != null}
         propsInItems={propsInItems}
+        dragStyle={dragStyle}
         item={item}
         func={this.props.func}>
         {newChild}
