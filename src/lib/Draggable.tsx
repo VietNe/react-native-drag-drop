@@ -116,14 +116,16 @@ class Draggable extends Component<DraggableProps, DraggableState> {
       panStyle.elevation = 1000;
       style = { ...style, ...(draggedElementStyle || { opacity: 0.6 }) };
     }
+    console.log("TEST", this.props.dragArea, this.props.dragAreaChild);
+
     return (
-      <Animated.View {...this.panResponder?.panHandlers} style={[{ display: "flex", flex: 1, width: "100%", height: "100%", alignItems: "center", justifyContent: "space-between" }, panStyle, style]}>
+      <Animated.View {...this.panResponder?.panHandlers} style={[{ display: "flex", alignItems: "center", justifyContent: "space-between" }, panStyle, style]}>
         {this.props.dragArea ? (
-          <TouchableOpacity style={{ flex: 1, width: "100%", height: "100%" }} onPressIn={() => this.setState({ pressed: true }, () => {})} onPressOut={() => this.setState({ pressed: false }, () => {})}>
+          <TouchableOpacity onPressIn={() => this.setState({ pressed: true }, () => {})} onPressOut={() => this.setState({ pressed: false }, () => {})}>
             {this.props.dragAreaChild}
           </TouchableOpacity>
         ) : null}
-        <TouchableOpacity style={{ flex: 1, width: "100%", height: "100%" }} delayLongPress={200} onLongPress={() => this.setState({ pressed: true }, () => {})} onPress={this.onPress} {...this.props.propsInItems}>
+        <TouchableOpacity delayLongPress={200} onLongPress={() => this.setState({ pressed: true }, () => {})} onPress={this.onPress} {...this.props.propsInItems}>
           {this.props.children}
         </TouchableOpacity>
       </Animated.View>
